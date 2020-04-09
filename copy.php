@@ -41,7 +41,11 @@ if(intval($_REQUEST["IBLOCK_ID_FIELDS"])>0){
 			if(!is_array($v))$prop_fields[$k]=trim($v);
 			if($k{0}=='~') unset($prop_fields[$k]);
 		}
-			$PropID = $ibp->Add($prop_fields);
+		
+		if (isset($prop_fields['TIMESTAMP_X']))
+			unset($prop_fields['TIMESTAMP_X']);
+		
+		$PropID = $ibp->Add($prop_fields);
 		if(intval($PropID)<=0)
 			$bError = true;
 	}
